@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script>
+      const vlu = '';
+      const socket = new WebSocket('ws://localhost:3000');
+      socket.onopen = function() {
+        console.log('Connected1');
+        socket.send(
+          JSON.stringify({
+            event: 'events',
+          }),
+        );
+
+        socket.onmessage = function(data) {
+          this.vlu = data.data
+          console.log(data.data);
+        };
+      };
+      // socket.onclose = function(){
+      //   console.log('close 1');
+      // }
+      // socket.onopen = function() {
+      //   socket.send(
+      //     JSON.stringify({
+      //       event : 'hello',
+          
+      //     }),
+      //     // 'hello',
+      //   );
+      //   socket.onmessage = function(data) {
+      //     console.log(data.data);
+      //   };
+      // };
+    </script>
+  </head>
+
+  <body>
+    <input type="text" value="">
+  </body>
+</html>

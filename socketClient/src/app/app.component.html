@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <label for="">{{name}}</label>
+    <!-- <input type="text" [(ngModel)] ="name" >  -->
+    <br>
+    <label for="">Messege :</label> <input type="text" (keyup.enter)="sendMessge($event)">
+    <br>
+    <!-- <button (click)='GetMessege()'>get events</button> <br> -->
+    <!-- <button (click)='GetEmit()'>Emit</button> <br>
+    <button (click)='GetObserverble()'>Observerble</button> -->
+    <ul>
+      <li *ngFor='let d of data'><strong>{{d.name}} :</strong> {{d.messege}}</li>
+    </ul>
+</body>
+</html>
