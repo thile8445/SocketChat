@@ -11,9 +11,6 @@
     <br>
     <label for="">Messenger :</label> <input type="text" (keyup.enter)="sendMessage($event)">
     <br>
-    <!-- <button (click)='GetMessege()'>get events</button> <br> -->
-    <!-- <button (click)='GetEmit()'>Emit</button> <br>
-    <button (click)='GetObserverble()'>Observerble</button> -->
     <ul>
       <li *ngFor='let d of data'><strong>{{d.name}} :</strong> {{d.messenger}}</li>
     </ul>
