@@ -1,8 +1,6 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
-import * as io from 'socket.io-client';
+import { Component, OnInit } from '@angular/core';
 import { SocketIOService } from './socketio.service';
-import { messege } from './messege';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Messenger } from './messenger';
 
 @Component({
   selector: 'app-root',
@@ -10,31 +8,24 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  name :string = '';
-  data :messege[] = [];
+  name: string = '';
+  data: Messenger[] = [];
+  room :string = 'aRoom';
   constructor(private socketIoService: SocketIOService) {}
   ngOnInit() {
     this.socketIoService.setupSocketConnection();
     this.name = prompt('Enter your username:');
+    this.socketIoService.joinRoom(this.room);
+    this.socketIoService.chatClient();
   }
-  GetMessege(data : messege) {
-    let re = this.socketIoService.chat(data);
-    return re;
-  }
-  GetEmit() {
-    this.socketIoService.socketEmit();
-  }
-  GetObserverble() {
-    this.socketIoService.socketObserverble();
-  }
-  sendMessge(event){
-    const da :  messege ={
-      name : this.name,
-      room : 'a',
-      messege : event.target.value,
-    }
-    this.GetMessege(da);
-     this.data.push(da);
-    // console.log(this.data);
+  sendMessage(event) {
+    const da: Messenger = {
+      name: this.name,
+      room: this.room,
+      messenger: event.target.value,
+    };
+    this.socketIoService.chat(da);
+    // this.socketIoService.chatClient();
+    this.data = this.socketIoService.data;
   }
 }

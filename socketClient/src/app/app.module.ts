@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SocketIOService } from './socketio.service';
-import { SocketService } from './socket.service';
 import {FormsModule} from '@angular/forms';
 
 @NgModule({
@@ -16,7 +15,7 @@ import {FormsModule} from '@angular/forms';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [SocketIOService,SocketService],
+  providers: [SocketIOService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
